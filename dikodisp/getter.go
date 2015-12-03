@@ -12,6 +12,7 @@ package main
 // r_coocurrence
 // r_instr
 // r_bigger_than
+// useless
 func getRelsFromType(w Word, typeRel string) (list []Rel) {
 	for _, r := range w.ListRel {
 		if r.Type == typeRel {
