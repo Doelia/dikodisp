@@ -1,0 +1,238 @@
+// out: style.css, compress: true
+
+/*** Correspondances joueur -> couleur ***/
+@c1: #C560EF;
+@c2: #EAE40D;
+@c3: #7DD82A;
+@c4: #FBBD08;
+@c5: #FD1F71;
+@c6: #F9FAFB;
+@c7: black;
+
+// Couleur backgroud definer
+.cbg {
+    &[num="1"] {
+        background-color: @c1 !important;
+    }
+    &[num="2"] {
+        background-color: @c2 !important;
+    }
+    &[num="3"] {
+        background-color: @c3 !important;
+    }
+    &[num="4"] {
+        background-color: @c4 !important;
+    }
+    &[num="5"] {
+        background-color: @c5 !important;
+    }
+    &[num="6"] {
+        background-color: @c6 !important;
+    }
+    &[num="7"] {
+        background-color: @c7 !important;
+    }
+}
+
+// Pour décoler les icons du texte (ajouter la classe space aux fa voulus)
+.fa.space {
+    padding-right: 6px;
+}
+
+// Hack Semantic pour centrer du texte (pas trouvé comment faire...)
+.ui.content.aligned.center {
+    text-align: center;
+}
+
+// Hack Semantic pour debugger les animations des modals, bizarre...
+.ui.small.modal {
+    display: block;
+    margin-top: -5000px;
+}
+
+#interface {
+    height: 100%;
+
+    /*** PAGE LOGIN ***/
+    &.login {
+        background-color: #DADADA;
+        > .grid {
+            height: 100%;
+        }
+        .column {
+            max-width: 450px;
+        }
+    }
+
+    /*** PAGE DU JEU ***/
+    &.game {
+
+        background-color: #F1F1F1;
+
+        // Menu du haut
+        .ui.menu {
+            margin-top: 0;
+            .item img.logo {
+                margin-right: 1.5em;
+            }
+        }
+
+        // Block principal (plateau + liste des joueurs)
+        .ui.container.main {
+
+            width: 950px;
+            margin-top: 50px;
+
+            .grid {
+
+                background: white;
+                border-radius: 10px;
+
+                // Plateau de jeu (gauche)
+                .column.board {
+                    transition-property: background;
+                    transition-duration: .5s;
+                    transition-timing-function: ease;
+                    background: #81BED0;
+                    border-radius: 10px 0 0 10px;
+                }
+
+                // Liste des joueurs (droite)
+                .column.players {
+
+                    // Un joueur
+                    .item.player {
+                        &.inactive {
+                        }
+                        .label, .progress {
+                            margin-top: 3px;
+                        }
+                        .progress {
+                            margin-bottom: 0;
+                            width: 120px;
+                            .bar {
+                                min-width: 0;
+                                transition-duration: 0ms;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*** BOARD ***/
+
+/**
+ * Note: La classe "inactive" désigne les elements (carré ou lignes)
+ * qui ne sont pas encore colorés
+ */
+
+@spaceGrid: 56px; // Ecart entre 2 points
+@sizeDot: 16px; // Taille des points (et de barres inactives)
+@reducActiveLine: 6px; // Réduction de la taille des barres actives
+@sizeGrid: 10; // Nombre de points sur la grille
+
+@sizeGridPx: @spaceGrid * (@sizeGrid - 1) + @sizeDot;
+
+#board {
+    position: relative;
+    width: @sizeGridPx;
+    height: @sizeGridPx;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    > div {
+        position: absolute;
+        transition-duration: .2s;
+        transition-timing-function: ease;
+    }
+
+    .dot {
+        background-color: #5A7E8C;
+        height: @sizeDot;
+        width: @sizeDot;
+        z-index: 3;
+        border-radius: 5px;
+    }
+
+    .line {
+        background-color: gray; // Couleur par défaut, indéfinie
+        z-index: 2;
+        transition-property: width, height, margin, background, margintop, marginleft;
+
+        &.inactive {
+            border-radius: 4px;
+            opacity: .1;
+            background-color: white;
+        }
+
+        &.last {
+            border: 2px dashed rgba(255,255,255,.7);
+        }
+
+        // v comme vertical
+        &.v {
+            height: (@spaceGrid - @sizeDot) + 2px; // Un peu plus longue pour aller sous les points
+            width: @sizeDot - @reducActiveLine;
+            margin-left: @reducActiveLine/2; // Pour centrer a cause de la largeur plus petite
+            margin-top: @sizeDot - 1px; // Petit décalage pour passer par dessous les points des deux cotes
+            &.inactive {
+                height: @spaceGrid - @sizeDot; // Longeure parfaite entre 2 points
+                width: @sizeDot; // Même largeur que les points
+                margin-left: 0;
+                margin-top: @sizeDot;
+            }
+        }
+
+        // h comme horizontal
+        &.h {
+            width: (@spaceGrid - @sizeDot) + 2px;
+            height: @sizeDot - @reducActiveLine;
+            margin-top: @reducActiveLine/2;
+            margin-left: @sizeDot - 1px;
+            &.inactive {
+                width: @spaceGrid - @sizeDot;
+                height: @sizeDot;
+                margin-top: 0;
+                margin-left: @sizeDot;
+            }
+        }
+    }
+
+    .square {
+        width: @spaceGrid;
+        height: @spaceGrid;
+        margin-left: @sizeDot/2;
+        margin-top: @sizeDot/2;
+        background-color: gray; // Couleur par défaut, indéfinie
+        opacity: .8;
+        z-index: 1;
+        transition-property: background, opacity;
+        &.inactive {
+            opacity: 0;
+        }
+    }
+
+}
+
+// Changement CSS quand c'est le tour du joueur (+ consolidation en JS)
+#board_container.myTurn {
+    background: #87B4C5;
+    .line.inactive {
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+#endGame {
+    .circular {
+        margin-right: 5px;
+    }
+}
