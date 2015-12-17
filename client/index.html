@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="diko">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -16,24 +16,29 @@
 
 <body>
 
-    <div class="ui container main">
-        <div class="word">
-            <h1>Mot <span id="name"></span></h1>
+    <div class="container main">
+        <div class="word" ng-controller="WordController as wordCtrl">
+            <h1>Mot <span id="name">{{ wordCtrl.word.Name }}</span></h1>
             <h2>Définition</h2>
             <p id="definition">
-
+                {{ wordCtrl.word.Def }}
             </p>
-            <h2>Mots assosiés</h2>
-            <div id="list-types">
-
+            <h2>Mots associés</h2>
+            <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
+                {{ type }}
+                <div ng-repeat="word in wordCtrl.getWordsFromType(type)">
+                    {{ word }}
+                </div>
             </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/types.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/main-angular.js"></script>
 
 </body>
 
