@@ -25,7 +25,7 @@
             </p>
             <h2>Mots associés</h2>
             <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
-                {{ type }}
+                {{ type.name }}
                 <div ng-repeat="word in wordCtrl.getWordsFromType(type)">
                     {{ word }}
                 </div>

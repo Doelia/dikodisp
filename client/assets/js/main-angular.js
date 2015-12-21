@@ -14,11 +14,18 @@ app.controller('WordController', function($http, $scope) {
         var rel = that.word.ListRel;
         var list = [];
         for (var i in rel) {
-            var r = rel[i];
-            list.push(r.Type);
+            list.push(rel[i].Type);
         }
         list = $.unique(list);
-        that.listTypes = list;
+
+        that.listTypes = [];
+        for (var i in list) {
+            var r = {
+                label: list[i],
+                name: getFullNameOfType(list[i])
+            };
+            that.listTypes.push(r);
+        }
     }
 
     var getWordsFromType = function(typeNeedle) {
