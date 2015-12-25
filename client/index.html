@@ -43,22 +43,22 @@
                 </div>
 
                 <div class="container">
-
                     <h2>Mots associés</h2>
                     <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
-                        <h2>{{ type.name }}</h3>
-                            <span ng-repeat="word in wordCtrl.getWordsFromType(type.label)">
+                        <h3>{{ type.name }}</h3>
+                        <div class="row">
+                            <div class="col-md-4" ng-repeat="word in wordCtrl.getWordsFromType(type.label)">
                                 {{ word.Content }} ({{ word.Stars }}/10 {{ word.Poids }})<br>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div ng-hide="wordCtrl.isLoad" class="">
-                    Chargement en cours...
-                </div>
+            <div ng-hide="wordCtrl.isLoad" class="container">
+                Chargement en cours...
             </div>
         </div>
 
