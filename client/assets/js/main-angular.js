@@ -1,6 +1,12 @@
 
 var app = angular.module('diko', []);
 
+app.controller('SearchController', function() {
+    var that = this;
+
+    that.word = "Chat"; // TODO
+});
+
 app.controller('WordController', function($http, $scope) {
     var that = this;
 

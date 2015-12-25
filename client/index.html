@@ -18,10 +18,11 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Diko</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;"
+                ng-controller="SearchController as searchCtrl">
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input type="text" placeholder="Mot" class="form-control">
+                        <input type="text" placeholder="Mot" class="form-control" value="{{searchCtrl.word}}">
                     </div>
                     <button type="submit" class="btn btn-success">Rechercher</button>
                 </form>
