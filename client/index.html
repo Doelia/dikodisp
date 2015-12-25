@@ -24,7 +24,7 @@
             <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
                 {{ type.name }}
                 <span ng-repeat="word in wordCtrl.getWordsFromType(type.label)">
-                    {{ word.Content }} ({{ word.Poids }})
+                    {{ word.Content }} ({{ word.Poids }})<br>
                 </span>
             </div>
         </div>

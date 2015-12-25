@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -13,8 +14,7 @@ import (
 func Test() {
 	fmt.Println("Go test")
 	content := GetWordFromFile("chat")
-	w := ParseXml(content)
-	fmt.Println(getRelsFromType(w, "r_agent"))
+	ParseXml(content)
 }
 
 func cleanTerme(s string) string {
@@ -59,9 +59,12 @@ func getValueFromAttr(str string) string {
 	return spls[1]
 }
 
-func buildRel(line string) Rel {
+func buildRel(line string) (error, Rel) {
 	var r Rel
 	r.Content = cleanTerme(GetContentOfBalise(line))
+	if r.Content == "_COM" {
+		return errors.New("Invalid"), r
+	}
 	attributes := strings.Split(line, " ")
 	for _, attr := range attributes {
 		if strings.Contains(attr, "type") {
@@ -76,7 +79,7 @@ func buildRel(line string) Rel {
 			r.Tid = i
 		}
 	}
-	return r
+	return nil, r
 }
 
 // ParseXml ..
@@ -92,8 +95,10 @@ func ParseXml(content string) (w Word) {
 			w.Name = GetContentOfBalise(line)
 		}
 		if balise == "rel" {
-			r := buildRel(line)
-			w.ListRel = append(w.ListRel, r)
+			err, r := buildRel(line)
+			if err == nil {
+				w.ListRel = append(w.ListRel, r)
+			}
 			//fmt.Println(r)
 		}
 	}
