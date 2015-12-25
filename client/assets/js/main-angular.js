@@ -1,13 +1,45 @@
 
 var app = angular.module('diko', []);
 
+app.service('WordLoader', function($q, $http, $timeout) {
+
+    var deferred = $q.defer();
+    var fakeTimeSeconds = 0;
+
+    var that = function() {
+
+        this.GetWord = function(name, callback) {
+            return $http.get("/getWord?word="+name)
+                .then(function(response) {
+                    if (response.data != "404") {
+                        var wordJson = response.data;
+                        callback(wordJson);
+                    } else {
+                        console.log("not found");
+                        callback(null);
+                    }
+                });
+        };
+
+        $timeout(function() {
+            deferred.resolve();
+        }, fakeTimeSeconds * 1000);
+
+    };
+
+    var o = new that();
+    o.promise = deferred.promise;
+    return o;
+
+});
+
 app.controller('SearchController', function() {
     var that = this;
 
     that.word = "Chat"; // TODO
 });
 
-app.controller('WordController', function($http, $scope) {
+app.controller('WordController', function($http, $scope, WordLoader) {
     var that = this;
 
     that.word = {}; // Structure Mot, voir structure Go
@@ -65,17 +97,17 @@ app.controller('WordController', function($http, $scope) {
         return list;
     };
 
-    $http.get("/getWord?word="+name)
-        .then(function(response) {
-            if (response.data != "404") {
-                that.word = response.data;
-                buildTypes();
-                buildStars();
-                $('.ttip').tooltip(); // TODO async
-            } else {
-                console.log("not found");
-            }
+    that.loadWord = function() {
+        WordLoader.GetWord(name, function(wordJson) {
+            that.word = wordJson;
+            buildTypes();
+            buildStars();
+            $('.ttip').tooltip(); // TODO async
             that.isLoad = true;
-
         });
+    };
+
+    that.loadWord();
+
+
 });
