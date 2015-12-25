@@ -31,7 +31,9 @@ app.controller('WordController', function($http, $scope) {
                 label: list[i],
                 name: getFullNameOfType(list[i])
             };
-            that.listTypes.push(r);
+            if (r.name !== null) {
+                that.listTypes.push(r);
+            }
         }
     };
 
