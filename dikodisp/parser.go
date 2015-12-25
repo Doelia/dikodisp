@@ -65,6 +65,9 @@ func buildRel(line string) (error, Rel) {
 	if r.Content == "_COM" {
 		return errors.New("Invalid"), r
 	}
+	if strings.Contains(r.Content, ":") {
+		return errors.New("Invalid"), r
+	}
 	attributes := strings.Split(line, " ")
 	for _, attr := range attributes {
 		if strings.Contains(attr, "type") {

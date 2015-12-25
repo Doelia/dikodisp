@@ -10,7 +10,7 @@ app.controller('WordController', function($http, $scope) {
 
     var name = "chat"; // TODO
 
-    // Contruit la liste unique des types
+    // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
         var rel = that.word.ListRel;
         var list = [];

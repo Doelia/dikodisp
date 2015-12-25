@@ -1,5 +1,5 @@
 var typeFulls = {
-    r_associated: "idées associés",
+    r_associated: "Idées associés",
     r_raff_sem: "Rafinement sémantique",
     r_domain:"Domaines correspondant",
     r_syn:"Synonymes",
