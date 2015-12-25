@@ -67,11 +67,15 @@ app.controller('WordController', function($http, $scope) {
 
     $http.get("/getWord?word="+name)
         .then(function(response) {
-            that.word = response.data;
-            buildTypes();
-            buildStars();
-            $('.ttip').tooltip();
-            // console.log(response);
+            if (response.data != "404") {
+                that.word = response.data;
+                buildTypes();
+                buildStars();
+                $('.ttip').tooltip(); // TODO async
+            } else {
+                console.log("not found");
+            }
             that.isLoad = true;
+
         });
 });

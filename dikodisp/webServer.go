@@ -23,8 +23,13 @@ func StartWebServer(port int) {
 func handlerWord(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	wordNeedle := req.URL.Query().Get("word")
-	content := GetWordFromFile(wordNeedle)
-	word := ParseXml(content)
-	b, _ := json.Marshal(word)
-	w.Write(b)
+	content, err := GetWordFromFile(wordNeedle)
+	if err == nil {
+		word := ParseXml(content)
+		b, _ := json.Marshal(word)
+		w.Write(b)
+	} else {
+		w.Write([]byte("404"))
+	}
+
 }

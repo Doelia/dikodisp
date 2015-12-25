@@ -14,7 +14,7 @@ import (
 // Test ..
 func Test() {
 	fmt.Println("Go test")
-	content := GetWordFromFile("chat")
+	content, _ := GetWordFromFile("chat")
 	ParseXml(content)
 }
 
@@ -129,11 +129,14 @@ func ParseXml(content string) (w Word) {
 }
 
 // GetWordFromFile ..
-func GetWordFromFile(word string) string {
+func GetWordFromFile(word string) (string, error) {
 	nameFile := word + ".xml"
-	buf, _ := ioutil.ReadFile(nameFile)
+	buf, err := ioutil.ReadFile(nameFile)
+	if err != nil {
+		return "", err
+	}
 	s := string(buf)
-	return s
+	return s, nil
 }
 
 // GetWordFromURL ..
