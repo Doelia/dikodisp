@@ -48,7 +48,10 @@
                         <h3>{{ type.name }}</h3>
                         <div class="row">
                             <div class="col-md-4" ng-repeat="word in wordCtrl.getWordsFromType(type.label)">
-                                {{ word.Content }} ({{ word.Stars }}/10 {{ word.Poids }})<br>
+                                {{ word.Content }}
+                                <span class="label label-warning ttip" title="Poids de {{ word.Poids }}">
+                                    {{ word.Stars }}/10
+                                </span>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                             </div>

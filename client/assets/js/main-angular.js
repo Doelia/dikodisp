@@ -62,6 +62,7 @@ app.controller('WordController', function($http, $scope) {
             that.word = response.data;
             buildTypes();
             buildStars();
+            $('.ttip').tooltip();
             // console.log(response);
             that.isLoad = true;
         });
