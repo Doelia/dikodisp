@@ -13,38 +13,62 @@
 
 <body>
 
-    <div class="container main">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Diko</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Mot" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Rechercher</button>
+                </form>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="main">
         <div class="word" ng-controller="WordController as wordCtrl">
             <div ng-show="wordCtrl.isLoad" class="">
-                <h1>Mot <span id="name">{{ wordCtrl.word.Name }}</span></h1>
-                <h2>Définition</h2>
-                <p id="definition">
-                    {{ wordCtrl.word.Def }}
-                </p>
-                <h2>Mots associés</h2>
-                <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
-                    <h2>{{ type.name }}</h2>
-                    <span ng-repeat="word in wordCtrl.getWordsFromType(type.label)">
-                        {{ word.Content }} ({{ word.Stars }}/10 {{ word.Poids }})<br>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </span>
+
+                <div class="jumbotron">
+                    <div class="container">
+                        <h1>Mot <span id="name">{{ wordCtrl.word.Name }}</span></h1>
+                        <p id="definition">
+                            {{ wordCtrl.word.Def }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <h2>Mots associés</h2>
+                    <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
+                        <h2>{{ type.name }}</h3>
+                            <span ng-repeat="word in wordCtrl.getWordsFromType(type.label)">
+                                {{ word.Content }} ({{ word.Stars }}/10 {{ word.Poids }})<br>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-hide="wordCtrl.isLoad" class="">
+                    Chargement en cours...
                 </div>
             </div>
-
-            <div ng-hide="wordCtrl.isLoad" class="">
-                Chargement en cours...
-            </div>
         </div>
-    </div>
 
-    <script type="text/javascript" src="assets/vendor/jquery-2.1.4.min.js"></script>
-    <script src="assets/vendor/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="assets/vendor/angular.min.js"></script>
-    <script type="text/javascript" src="assets/js/types.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
-    <script type="text/javascript" src="assets/js/main-angular.js"></script>
+        <script type="text/javascript" src="assets/vendor/jquery-2.1.4.min.js"></script>
+        <script src="assets/vendor/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="assets/vendor/angular.min.js"></script>
+        <script type="text/javascript" src="assets/js/types.js"></script>
+        <script type="text/javascript" src="assets/js/main.js"></script>
+        <script type="text/javascript" src="assets/js/main-angular.js"></script>
 
-</body>
+    </body>
 
-</html>
+    </html>
