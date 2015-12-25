@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -59,6 +60,20 @@ func getValueFromAttr(str string) string {
 	return spls[1]
 }
 
+func makeFirstUpperCase(s string) string {
+
+	if len(s) < 2 {
+		return strings.ToLower(s)
+	}
+
+	bts := []byte(s)
+
+	lc := bytes.ToUpper([]byte{bts[0]})
+	rest := bts[1:]
+
+	return string(bytes.Join([][]byte{lc, rest}, nil))
+}
+
 func buildRel(line string) (error, Rel) {
 	var r Rel
 	r.Content = cleanTerme(GetContentOfBalise(line))
@@ -68,6 +83,11 @@ func buildRel(line string) (error, Rel) {
 	if strings.Contains(r.Content, ":") {
 		return errors.New("Invalid"), r
 	}
+
+	if r.Content[0] != 'é' && r.Content[0] != 'ê' {
+		r.Content = makeFirstUpperCase(r.Content)
+	}
+
 	attributes := strings.Split(line, " ")
 	for _, attr := range attributes {
 		if strings.Contains(attr, "type") {
