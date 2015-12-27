@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 )
 
 // GetWordFromFile ..
@@ -20,7 +21,7 @@ func GetWordFromFile(word string) (string, error) {
 
 // GetWordFromURL ..
 func GetWordFromURL(word string) (string, error) {
-	url := ""
+	url := "http://www.jeuxdemots.org/rezo-xml.php?gotermsubmit=Chercher&gotermrel=" + word + "&output=onlyxml"
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -35,7 +36,17 @@ func GetWordFromURL(word string) (string, error) {
 	}
 	out := fmt.Sprintf("%s", robots)
 
+	out = getXMLFromHTMLSource(out)
+	fmt.Println(out)
+
 	return out, nil
+}
+
+func getXMLFromHTMLSource(content string) string {
+	out := content
+	out = strings.Split(out, "<CODE>")[1]
+	out = strings.Split(out, "</CODE>")[0]
+	return out
 }
 
 func putInFile(word string, content string) {

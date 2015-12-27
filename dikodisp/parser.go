@@ -11,7 +11,7 @@ import (
 // Test ..
 func Test() {
 	fmt.Println("Go test")
-	content, _ := GetWordFromFile("chat")
+	content, _ := GetWord("chien")
 	ParseXml(content)
 }
 
