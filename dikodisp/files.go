@@ -19,13 +19,13 @@ func GetWordFromFile(word string) (string, error) {
 }
 
 // GetWordFromURL ..
-func GetWordFromURL(word string) string {
+func GetWordFromURL(word string) (string, error) {
 	url := ""
 
 	resp, err := http.Get(url)
 	if err != nil {
 		ErrLogger.Println("Erreur durant le wget du mot " + word)
-		return ""
+		return "", err
 	}
 
 	robots, err := ioutil.ReadAll(resp.Body)
@@ -35,5 +35,27 @@ func GetWordFromURL(word string) string {
 	}
 	out := fmt.Sprintf("%s", robots)
 
-	return out
+	return out, nil
+}
+
+func putInFile(word string, content string) {
+
+}
+
+// GetWord Rotourne le contenu XML du cache si présent, du net sinon (puis met en cache), une erreur sinon
+func GetWord(word string) (string, error) {
+	fromFile, err := GetWordFromFile(word)
+	if err == nil {
+		fmt.Println("Mot " + word + " récupéré du cache")
+		return fromFile, nil
+	}
+
+	fromWeb, errWeb := GetWordFromURL(word)
+	if errWeb == nil {
+		fmt.Println("Mot " + word + " mis en cache")
+		putInFile(word, fromWeb)
+		return fromWeb, nil
+	}
+
+	return "", nil
 }
