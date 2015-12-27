@@ -56,7 +56,12 @@ app.controller('WordController', function($http, $scope, WordLoader) {
         for (var i in rel) {
             list.push(rel[i].Type);
         }
-        list = $.unique(list);
+        list = unique(list);
+
+        if (list.length > 100) {
+            console.log(list);
+            throw new Error("Trop de types différents : " + list.length);
+        }
 
         that.listTypes = [];
         for (i in list) {
@@ -88,6 +93,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     // typeNeedle string label dlf r_associated
     // Retourne un tableau de Ref (voir structures)
     that.getWordsFromType = function(typeNeedle) {
+        console.log("getWordsFromType of " + typeNeedle)
         var rel = that.word.ListRel;
         var list = [];
         for (var i in rel) {
