@@ -4,7 +4,6 @@ var app = angular.module('diko', []);
 app.service('WordLoader', function($q, $http, $timeout) {
 
     var deferred = $q.defer();
-    var fakeTimeSeconds = 0;
 
     var that = function() {
 
@@ -21,9 +20,7 @@ app.service('WordLoader', function($q, $http, $timeout) {
                 });
         };
 
-        $timeout(function() {
-            deferred.resolve();
-        }, fakeTimeSeconds * 1000);
+        deferred.resolve();
 
     };
 
