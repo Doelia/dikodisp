@@ -10,7 +10,7 @@ import (
 
 // GetWordFromFile ..
 func GetWordFromFile(word string) (string, error) {
-	nameFile := word + ".xml"
+	nameFile := "cache/" + word + ".xml"
 	buf, err := ioutil.ReadFile(nameFile)
 	if err != nil {
 		return "", err
@@ -20,7 +20,7 @@ func GetWordFromFile(word string) (string, error) {
 }
 
 func putInFile(word string, content string) {
-	nameFile := word + ".xml"
+	nameFile := "cache/" + word + ".xml"
 	mySlice := []byte(content)
 	ioutil.WriteFile(nameFile, mySlice, 0777)
 }
