@@ -69,7 +69,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
                 label: list[i],
                 name: getFullNameOfType(list[i])
             };
-            if (r.name !== null && r.name !== "") {
+            if (r.name !== undefined && r.name !== null && r.name !== "") {
                 that.listTypes.push(r);
             }
         }
