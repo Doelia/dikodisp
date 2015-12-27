@@ -46,7 +46,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     that.isLoad = false;
     that.listTypes = []; // Liste des types des relations, unique (label, name)
 
-    var name = "chien"; // TODO
+    var name = "chat"; // TODO
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
@@ -57,11 +57,6 @@ app.controller('WordController', function($http, $scope, WordLoader) {
             list.push(rel[i].Type);
         }
         list = unique(list);
-
-        if (list.length > 100) {
-            console.log(list);
-            throw new Error("Trop de types différents : " + list.length);
-        }
 
         that.listTypes = [];
         for (i in list) {
@@ -93,7 +88,6 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     // typeNeedle string label dlf r_associated
     // Retourne un tableau de Ref (voir structures)
     that.getWordsFromType = function(typeNeedle) {
-        console.log("getWordsFromType of " + typeNeedle)
         var rel = that.word.ListRel;
         var list = [];
         for (var i in rel) {
