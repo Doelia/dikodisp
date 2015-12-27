@@ -111,11 +111,11 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     // typeNeedle string label dlf r_associated
     // Retourne un tableau de Ref (voir structures)
     that.getWordsFromType = function(typeNeedle) {
+
         if (that.hashMapWords[typeNeedle] !== undefined) {
             return that.hashMapWords[typeNeedle];
         }
 
-        console.log("getWordsFromType");
         var rel = that.word.ListRel;
         var list = [];
         for (var i in rel) {
@@ -124,7 +124,9 @@ app.controller('WordController', function($http, $scope, WordLoader) {
                 list.push(rel[i]);
             }
         }
+
         that.hashMapWords[typeNeedle] = list;
+        
         return list;
     };
 
