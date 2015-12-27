@@ -43,6 +43,14 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     that.isLoad = false;
     that.listTypes = []; // Liste des types des relations, unique (label, name)
 
+    $scope.predicate = '-Content';
+    $scope.reverse = true;
+
+    $scope.order = function(predicate) {
+        $scope.predicate = predicate;
+        $scope.reverse = (predicate == '-Content');
+    }
+
     var name = "chat"; // TODO
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
@@ -61,7 +69,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
                 label: list[i],
                 name: getFullNameOfType(list[i])
             };
-            if (r.name !== null) {
+            if (r.name !== null && r.name !== "") {
                 that.listTypes.push(r);
             }
         }
@@ -81,6 +89,22 @@ app.controller('WordController', function($http, $scope, WordLoader) {
             }
         }
     };
+
+    $scope.range = function(n) {
+        return new Array(n);
+    };
+
+    that.fullsStarsNumber = function(score) {
+        return Math.floor(score / 2);
+    }
+
+    that.halfStarsNumber = function(score) {
+        return score % 2;
+    }
+
+    that.emptyStarsNumber = function(score) {
+        return Math.floor((10 - score) / 2);
+    }
 
     // typeNeedle string label dlf r_associated
     // Retourne un tableau de Ref (voir structures)
