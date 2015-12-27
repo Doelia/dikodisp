@@ -12,7 +12,7 @@ import (
 func Test() {
 	fmt.Println("Go test")
 	content, _ := GetWord("chien")
-	ParseXml(content)
+	ParseXML(content)
 }
 
 func cleanTerme(s string) string {
@@ -20,6 +20,7 @@ func cleanTerme(s string) string {
 	return spls[0]
 }
 
+// GetBaliseName ..
 func GetBaliseName(line string) string {
 	name := ""
 	for i, c := range line {
@@ -28,13 +29,13 @@ func GetBaliseName(line string) string {
 		}
 		if c == ' ' || c == '>' {
 			return name
-		} else {
-			name = name + string(c)
 		}
+		name = name + string(c)
 	}
 	return name
 }
 
+// GetContentOfBalise ..
 func GetContentOfBalise(line string) string {
 	goWrite := false
 	name := ""
@@ -102,8 +103,8 @@ func buildRel(line string) (error, Rel) {
 	return nil, r
 }
 
-// ParseXml ..
-func ParseXml(content string) (w Word) {
+// ParseXML ..
+func ParseXML(content string) (w Word) {
 	lines := strings.Split(content, "\n")
 	for _, line := range lines {
 		//fmt.Println("-" + line)

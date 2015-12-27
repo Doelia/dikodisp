@@ -25,7 +25,7 @@ func handlerWord(w http.ResponseWriter, req *http.Request) {
 	wordNeedle := req.URL.Query().Get("word")
 	content, err := GetWordFromFile(wordNeedle)
 	if err == nil {
-		word := ParseXml(content)
+		word := ParseXML(content)
 		b, _ := json.Marshal(word)
 		w.Write(b)
 	} else {

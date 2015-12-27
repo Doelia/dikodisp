@@ -6,7 +6,7 @@ type Rel struct {
 	Poids   int
 	Tid     int
 	Content string
-	// Stars, calculé en JS (1 à 5)
+	// Stars, calculé en JS (1 à 10)
 }
 
 // Word ..
