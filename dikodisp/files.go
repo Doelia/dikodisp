@@ -19,6 +19,12 @@ func GetWordFromFile(word string) (string, error) {
 	return s, nil
 }
 
+func putInFile(word string, content string) {
+	nameFile := word + ".xml"
+	mySlice := []byte(content)
+	ioutil.WriteFile(nameFile, mySlice, 0777)
+}
+
 // GetWordFromURL ..
 func GetWordFromURL(word string) (string, error) {
 	url := "http://www.jeuxdemots.org/rezo-xml.php?gotermsubmit=Chercher&gotermrel=" + word + "&output=onlyxml"
@@ -47,10 +53,6 @@ func getXMLFromHTMLSource(content string) string {
 	out = strings.Split(out, "<CODE>")[1]
 	out = strings.Split(out, "</CODE>")[0]
 	return out
-}
-
-func putInFile(word string, content string) {
-
 }
 
 // GetWord Rotourne le contenu XML du cache si présent, du net sinon (puis met en cache), une erreur sinon
