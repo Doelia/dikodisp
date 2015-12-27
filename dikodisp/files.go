@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/djimenez/iconv-go"
 )
 
 // GetWordFromFile ..
@@ -29,6 +31,8 @@ func putInFile(word string, content string) {
 func GetWordFromURL(word string) (string, error) {
 	url := "http://www.jeuxdemots.org/rezo-xml.php?gotermsubmit=Chercher&gotermrel=" + word + "&output=onlyxml"
 
+	fmt.Println("wget " + url)
+
 	resp, err := http.Get(url)
 	if err != nil {
 		ErrLogger.Println("Erreur durant le wget du mot " + word)
@@ -42,8 +46,10 @@ func GetWordFromURL(word string) (string, error) {
 	}
 	out := fmt.Sprintf("%s", robots)
 
-	out = getXMLFromHTMLSource(out)
+	out, _ = iconv.ConvertString(out, "windows-1252", "utf-8")
+
 	fmt.Println(out)
+	out = getXMLFromHTMLSource(out)
 
 	return out, nil
 }
