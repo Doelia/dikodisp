@@ -65,7 +65,7 @@ var typeFulls = {
     r_lieu_action: "Que peut-on y faire ?",
     r_sentiment: "Sentiments associés",
     r_manner: "De quelle manière l'utiliser ?",
-    r_infopot: "Information sémantique potentielle",
+    // r_infopot: "Information sémantique potentielle",
     r_agentif_role: "De quel manière le crééer ?",
     r_action_verbe: "Actions vers le verbe",
     r_causatif: "Causes",
