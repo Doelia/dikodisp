@@ -129,6 +129,8 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     };
 
     that.loadWord = function() {
+        that.hashMapWords = {};
+        that.false = true;
         console.log("wget du mot "+name)
         WordLoader.GetWord(name, function(wordJson) {
             console.log("Mot reçu.");
