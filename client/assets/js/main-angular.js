@@ -49,7 +49,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     $scope.order = function(data) {
         $scope.predicate = predicate;
         $scope.reverse = (predicate == '-Content');
-    }
+    };
 
     var name = "amour"; // TODO
 
@@ -96,15 +96,15 @@ app.controller('WordController', function($http, $scope, WordLoader) {
 
     that.fullsStarsNumber = function(score) {
         return Math.floor(score / 2);
-    }
+    };
 
     that.halfStarsNumber = function(score) {
         return score % 2;
-    }
+    };
 
     that.emptyStarsNumber = function(score) {
         return Math.floor((10 - score) / 2);
-    }
+    };
 
     that.hashMapWords = {};
 
@@ -133,7 +133,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     that.loadWord = function() {
         that.hashMapWords = {};
         that.false = true;
-        console.log("wget du mot "+name)
+        console.log("wget du mot "+name);
         WordLoader.GetWord(name, function(wordJson) {
             console.log("Mot reçu.");
             that.word = wordJson;
