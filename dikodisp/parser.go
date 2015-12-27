@@ -77,6 +77,9 @@ func buildRel(line string) (error, Rel) {
 	if strings.Contains(r.Content, ":") {
 		return errors.New("Invalid"), r
 	}
+	if strings.Contains(r.Content, "\"") {
+		return errors.New("Invalid"), r
+	}
 
 	if r.Content[0] != 'é' && r.Content[0] != 'ê' {
 		r.Content = makeFirstUpperCase(r.Content)
