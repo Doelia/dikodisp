@@ -3,17 +3,9 @@ package main
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 )
-
-// Test ..
-func Test() {
-	fmt.Println("Go test")
-	content, _ := GetWord("chien")
-	ParseXML(content)
-}
 
 func cleanTerme(s string) string {
 	spls := strings.Split(s, ">")
@@ -55,6 +47,10 @@ func GetContentOfBalise(line string) string {
 
 func getValueFromAttr(str string) string {
 	spls := strings.Split(str, "\"")
+	if len(spls) <= 1 {
+		ErrLogger.Println("Pas de valeur sur la ligne " + str)
+		return ""
+	}
 	return spls[1]
 }
 

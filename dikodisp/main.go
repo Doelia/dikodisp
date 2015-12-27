@@ -17,6 +17,13 @@ func goMain() {
 	StartWebServer(*port)
 }
 
+// Test ..
+func Test() {
+	fmt.Println("Go test")
+	content, _ := GetWord("chien")
+	ParseXML(content)
+}
+
 func main() {
 
 	fmt.Println("=== DIKO DISPLAYER ===")
