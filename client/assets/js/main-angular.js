@@ -46,7 +46,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     $scope.predicate = '-Content';
     $scope.reverse = true;
 
-    $scope.order = function(predicate) {
+    $scope.order = function(data) {
         $scope.predicate = predicate;
         $scope.reverse = (predicate == '-Content');
     }

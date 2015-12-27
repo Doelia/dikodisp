@@ -21,10 +21,12 @@
             <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;"
                 ng-controller="SearchController as searchCtrl">
                 <form class="navbar-form navbar-right">
-                    <div class="form-group">
+                    <div class="input-group">
                         <input type="text" placeholder="Mot" class="form-control" value="{{searchCtrl.word}}">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                        </span>
                     </div>
-                    <button type="submit" class="btn btn-success">Rechercher</button>
                 </form>
             </div><!--/.navbar-collapse -->
         </div>
@@ -43,8 +45,11 @@
                     </div>
                 </div>
 
-                <div>
-                    <button ng-click="order('-Stars')">Etoiles</button>
+                <div class="container">
+                    <select name="" id="" class="form-control" ng-click="order('-Stars')">
+                        <option value="">Classer par ordre alphabétique</optien>
+                        <option value="">Classer par pertinence</optien>
+                    </select>
                 </div>
 
                 <div class="container">
@@ -65,12 +70,19 @@
 
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
-                                <span class="badge badge-warning">
-                                    <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
-                                </span>
-                                {{ word.Content }}
-                              </li>
-                            </ul>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ word.Content }}
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <div class="label label-warning ttip" title="Poids de {{ word.Poids }}">
+                                            <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
+                                        </div>
+                                        <a href="" class="btn btn-primary btn-xs"><i class="fa fa-link"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
