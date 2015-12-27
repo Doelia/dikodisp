@@ -51,7 +51,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
         $scope.reverse = (predicate == '-Content');
     }
 
-    var name = "chat"; // TODO
+    var name = "amour"; // TODO
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
@@ -126,7 +126,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
         }
 
         that.hashMapWords[typeNeedle] = list;
-        
+
         return list;
     };
 

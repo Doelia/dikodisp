@@ -18,8 +18,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Diko</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;"
-                ng-controller="SearchController as searchCtrl">
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;" ng-controller="SearchController as searchCtrl">
                 <form class="navbar-form navbar-right">
                     <div class="input-group">
                         <input type="text" placeholder="Mot" class="form-control" value="{{searchCtrl.word}}">
@@ -28,7 +27,7 @@
                         </span>
                     </div>
                 </form>
-            </div><!--/.navbar-collapse -->
+            </div>
         </div>
     </nav>
 
@@ -47,62 +46,57 @@
 
                 <div class="container">
                     <select name="" id="" class="form-control" ng-click="order('-Stars')">
-                        <option value="">Classer par ordre alphabétique</optien>
-                        <option value="">Classer par pertinence</optien>
+                        <option value="">Classer par ordre alphabétique</option>
+                        <option value="">Classer par pertinence</option>
                     </select>
-                </div>
 
-                <div class="container">
-                    <h2>Mots associés</h2>
-                    <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
-                        <h3>
-                            {{ type.name }}
-                            ({{ wordCtrl.getWordsFromType(type.label).length }} mots)
-                        </h3>
-                        <!-- <div class="row">
-                            <div class="col-md-4" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
-                                {{ word.Content }}
-                                <span class="label label-warning ttip" title="Poids de {{ word.Poids }}">
-                                    <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
-                                </span>
-                            </div>
-                        </div> -->
+                    <div class="container">
+                        <h2>Mots associés</h2>
+                        <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
+                            <h3>
+                                {{ type.name }}
+                                ({{ wordCtrl.getWordsFromType(type.label).length }} mots)
+                            </h3>
 
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        {{ word.Content }}
-                                    </div>
-                                    <div class="col-md-4 text-right">
-                                        <div class="label label-warning ttip" title="Poids de {{ word.Poids }}">
-                                            <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            {{ word.Content }}
                                         </div>
-                                        <a href="" class="btn btn-primary btn-xs"><i class="fa fa-link"></i></a>
+                                        <div class="col-md-4 text-right">
+                                            <div class="label label-warning ttip" title="Poids de {{ word.Poids }}">
+                                                <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
+                                            </div>
+                                            <a href="" class="btn btn-primary btn-xs"><i class="fa fa-link"></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div ng-hide="wordCtrl.isLoad" class="container">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  </div>
+                <div ng-hide="wordCtrl.isLoad" class="container">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        </div>
+                    </div>
+                    Chargement en cours...
                 </div>
-                Chargement en cours...
+
             </div>
         </div>
+    </div>
 
-        <script type="text/javascript" src="assets/vendor/jquery-2.1.4.min.js"></script>
-        <script src="assets/vendor/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script src="assets/vendor/angular.min.js"></script>
-        <script type="text/javascript" src="assets/js/types.js"></script>
-        <script type="text/javascript" src="assets/js/main.js"></script>
-        <script type="text/javascript" src="assets/js/main-angular.js"></script>
+    <script type="text/javascript" src="assets/vendor/jquery-2.1.4.min.js"></script>
+    <script src="assets/vendor/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="assets/vendor/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/types.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/main-angular.js"></script>
 
-    </body>
+</body>
 
-    </html>
+</html>
