@@ -1,4 +1,4 @@
-app.controller('PageController', function($scope, $location, $window) {
+app.controller('PageController', function($scope, $location, $window, $routeParams) {
     $scope.goPage = function(page) {
         console.log("go page "+page);
         $location.path(page);
@@ -9,12 +9,21 @@ app.controller('PageController', function($scope, $location, $window) {
         console.log('routeChangeSuccess');
        initJquery();
      });
+
 });
 
-app.controller('SearchController', function() {
+app.controller('SearchController', function($scope, $routeParams) {
     var that = this;
 
-    that.word = "chien"; // TODO
+    that.word = "Chargement...";
+
+    $scope.$on('$routeChangeSuccess', function() {
+        that.word = $routeParams.word;
+    });
+
+    that.loadWord = function() {
+
+    };
 });
 
 app.controller('WordController', function($http, $scope, WordLoader, $routeParams) {
