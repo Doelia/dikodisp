@@ -1,5 +1,4 @@
 
-
 function getFullNameOfType(typeRel) {
     return typeFulls[typeRel];
 }
@@ -10,6 +9,10 @@ function unique(array) {
     });
 }
 
-$(function () {
+function initJquery() {
     $('.ttip').tooltip();
+}
+
+$(function() {
+    initJquery();
 });

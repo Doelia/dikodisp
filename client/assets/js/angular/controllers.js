@@ -1,33 +1,12 @@
-
-var app = angular.module('diko', []);
-
-app.service('WordLoader', function($q, $http, $timeout) {
-
-    var deferred = $q.defer();
-
-    var that = function() {
-
-        this.GetWord = function(name, callback) {
-            return $http.get("/getWord?word="+name)
-                .then(function(response) {
-                    if (response.data != "404") {
-                        var wordJson = response.data;
-                        callback(wordJson);
-                    } else {
-                        console.log("not found");
-                        callback(null);
-                    }
-                });
-        };
-
-        deferred.resolve();
-
+app.controller('PageController', function($scope, $location, $window) {
+    $scope.goPage = function(page) {
+        $location.path(page);
+        $window.scrollTo(0,0);
     };
 
-    var o = new that();
-    o.promise = deferred.promise;
-    return o;
-
+    $scope.$on('$routeChangeSuccess', function(next, current) {
+       initJquery();
+     });
 });
 
 app.controller('SearchController', function() {
