@@ -11,9 +11,9 @@
         </div>
 
         <div class="container">
-            <select name="" id="" class="form-control" ng-click="order('-Stars')">
-                <option value="">Classer par ordre alphabétique</option>
-                <option value="">Classer par pertinence</option>
+            <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
+                <option value="-Content">Classer par ordre alphabétique</option>
+                <option value="-Stars">Classer par pertinence</option>
             </select>
 
             <div class="container">

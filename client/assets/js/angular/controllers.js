@@ -27,9 +27,8 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     $scope.predicate = '-Content';
     $scope.reverse = true;
 
-    $scope.order = function(data) {
-        $scope.predicate = predicate;
-        $scope.reverse = (predicate == '-Content');
+    $scope.order = function() {
+        $scope.reverse = ($scope.predicate == '-Content');
     };
 
     var name = $routeParams.word; // TODO
