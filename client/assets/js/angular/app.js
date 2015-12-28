@@ -8,11 +8,11 @@ app.config(function($routeProvider) {
         templateUrl: 'content/home.html'
 
     })
-    .when('/word', {
+    .when('/word/:word', {
         controller: 'PageController',
         templateUrl: 'content/word.html',
         resolve: {
-            promise: function (Loader) {
+            promise: function (WordLoader) {
                 return WordLoader.promise;
             }
         }

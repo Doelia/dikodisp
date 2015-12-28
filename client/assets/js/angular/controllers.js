@@ -1,10 +1,12 @@
 app.controller('PageController', function($scope, $location, $window) {
     $scope.goPage = function(page) {
+        console.log("go page "+page);
         $location.path(page);
         $window.scrollTo(0,0);
     };
 
     $scope.$on('$routeChangeSuccess', function(next, current) {
+        console.log('routeChangeSuccess');
        initJquery();
      });
 });
@@ -15,7 +17,7 @@ app.controller('SearchController', function() {
     that.word = "chien"; // TODO
 });
 
-app.controller('WordController', function($http, $scope, WordLoader) {
+app.controller('WordController', function($http, $scope, WordLoader, $routeParams) {
     var that = this;
 
     that.word = {}; // Structure Mot, voir structure Go
@@ -30,7 +32,7 @@ app.controller('WordController', function($http, $scope, WordLoader) {
         $scope.reverse = (predicate == '-Content');
     };
 
-    var name = "amour"; // TODO
+    var name = $routeParams.word; // TODO
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
