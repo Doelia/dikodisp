@@ -1,5 +1,7 @@
-app.controller('PageController', function($scope, $location, $window, $routeParams) {
-    $scope.goPage = function(page) {
+app.controller('PageController', function($scope, $location, $window, $routeParams, $rootScope) {
+    console.log('Init PageController');
+
+    $rootScope.goPage = function(page) {
         console.log("go page "+page);
         $location.path(page);
         $window.scrollTo(0,0);
@@ -7,12 +9,12 @@ app.controller('PageController', function($scope, $location, $window, $routePara
 
     $scope.$on('$routeChangeSuccess', function(next, current) {
         console.log('routeChangeSuccess');
-       initJquery();
+        initJquery();
      });
 
 });
 
-app.controller('SearchController', function($scope, $routeParams) {
+app.controller('SearchController', function($scope, $routeParams, $rootScope) {
     var that = this;
 
     that.word = "Chargement...";
@@ -21,8 +23,9 @@ app.controller('SearchController', function($scope, $routeParams) {
         that.word = $routeParams.word;
     });
 
-    that.loadWord = function() {
-
+    $scope.loadWord = function() {
+        console.log($scope.foo);
+        $rootScope.goPage('word/'+that.word);
     };
 });
 
