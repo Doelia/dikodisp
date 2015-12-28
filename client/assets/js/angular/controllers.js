@@ -127,12 +127,17 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
         that.false = true;
         console.log("wget du mot "+name);
         WordLoader.GetWord(name, function(wordJson) {
-            console.log("Mot reçu.");
-            that.word = wordJson;
-            buildTypes();
-            buildStars();
-            $('.ttip').tooltip(); // TODO async
-            that.isLoad = true;
+            if (wordJson !== null) {
+                console.log("Mot reçu.");
+                that.word = wordJson;
+                buildTypes();
+                buildStars();
+                $('.ttip').tooltip(); // TODO async
+                that.isLoad = true;
+            } else {
+                console.log("Mot introuvable");
+            }
+
         });
     };
 

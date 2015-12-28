@@ -11,7 +11,7 @@ app.service('WordLoader', function($q, $http, $timeout) {
                         var wordJson = response.data;
                         callback(wordJson);
                     } else {
-                        console.log("not found");
+                        console.log("Service WordLoader:: Mot introuvable");
                         callback(null);
                     }
                 });
