@@ -1,3 +1,2 @@
 - Aligner les mots
-- Faire le chargement de tous les mots
 - Activer les tooltips
