@@ -21,7 +21,6 @@ app.directive('ttip', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            // console.log(attrs);
             $(element).tooltip(scope.$eval(attrs.ttip));
         }
     };

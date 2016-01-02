@@ -42,6 +42,7 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     that.activeCat = "";
     that.activeAllCats = false;
     that.limite = 10;
+    that.hashMapWords = {};
 
     $scope.predicate = '-Content';
     $scope.reverse = true;
@@ -102,8 +103,6 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     that.emptyStarsNumber = function(score) {
         return Math.floor((10 - score) / 2);
     };
-
-    that.hashMapWords = {};
 
     // typeNeedle string label dlf r_associated
     // Retourne un tableau de Ref (voir structures)
