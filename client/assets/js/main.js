@@ -10,7 +10,7 @@ function unique(array) {
 }
 
 function initJquery() {
-    $('.ttip').tooltip();
+    $('.ttip').tooltip({title:'jQuery'});
 }
 
 $(function() {
