@@ -71,6 +71,10 @@ func makeFirstUpperCase(s string) string {
 func buildRel(line string) (error, Rel) {
 	var r Rel
 	r.Content = cleanTerme(GetContentOfBalise(line))
+
+	if r.Content == "" {
+		return errors.New("Empty"), r
+	}
 	if r.Content == "_COM" {
 		return errors.New("Invalid"), r
 	}
