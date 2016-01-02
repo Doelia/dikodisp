@@ -5,3 +5,8 @@
 .label {
     cursor: default;
 }
+
+.home {
+    max-width: 800px;
+    margin-top: 20px;
+}

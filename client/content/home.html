@@ -1,1 +1,21 @@
-DIKO
+<div class="container home">
+    <div class="jumbotron">
+        <h1>DIKO</h1>
+        <p>Dictionnaire basé sur les relation entre les mots</p>
+        <p>
+            Construit dynamiquement à partir du jeu <a href="http://www.jeuxdemots.org">www.jeuxdemots.org</a>
+        </p>
+    </div>
+</div>
+
+<div class="container home">
+    <h3>Recherchez un mot</h3>
+    <form class="" ng-controller="SearchController as searchCtrl">
+        <div class="input-group">
+            <input type="text" placeholder="Mot" class="form-control" ng-model="searchCtrl.word">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-success" ng-click="loadWord(searchCtrl.word)"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+</div>
