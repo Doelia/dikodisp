@@ -8,11 +8,3 @@ function unique(array) {
         return index == $.inArray(el, array);
     });
 }
-
-function initJquery() {
-    $('.ttip').tooltip({title:'jQuery'});
-}
-
-$(function() {
-    initJquery();
-});
