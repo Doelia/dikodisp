@@ -77,7 +77,7 @@ var typeFulls = {
     r_quantificateur: "Quantifie",
     r_fem: "Équivalent féminen",
     r_manner_1: "Actions possibles",
-    r_instance: "Instance de",
+    r_instance: "Instances",
     r_set_item: "Compose",
     r_processus_agent: "Acteurs",
     r_syn_strict: "Sustituable par",
