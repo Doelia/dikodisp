@@ -16,10 +16,10 @@
 
                 <div class="">
                     <div class="form-group">
-                        <label for="">Tri des mots</label>
+                        <label for="">Dans une catégorie, trier les mots...</label>
                         <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
-                            <option value="-Content">Classer par ordre alphabétique</option>
-                            <option value="-Stars">Classer par pertinence</option>
+                            <option value="-Content">par ordre alphabétique</option>
+                            <option value="-Stars">Par pertinence</option>
                         </select>
                     </div>
 
@@ -41,7 +41,7 @@
                                         </a>
                                     </h4>
                                 </div>
-                                <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name}">
+                                <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats }">
                                     <ul class="list-group">
 
                                         <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">

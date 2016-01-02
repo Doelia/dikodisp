@@ -41,6 +41,7 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     that.notFound = false;
     that.listTypes = []; // Liste des types des relations, unique (label, name)
     that.activeCat = "";
+    that.activeAllCats = false;
 
     $scope.predicate = '-Content';
     $scope.reverse = true;
