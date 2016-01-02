@@ -50,7 +50,7 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
         $scope.reverse = ($scope.predicate == '-Content');
     };
 
-    var name = $routeParams.word; // TODO
+    var name = $routeParams.word;
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
