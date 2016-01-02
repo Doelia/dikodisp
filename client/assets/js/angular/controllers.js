@@ -40,6 +40,7 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     that.isLoad = false; // Contenu chargé ?
     that.notFound = false;
     that.listTypes = []; // Liste des types des relations, unique (label, name)
+    that.activeCat = "";
 
     $scope.predicate = '-Content';
     $scope.reverse = true;

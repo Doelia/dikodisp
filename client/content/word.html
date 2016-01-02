@@ -31,9 +31,10 @@
                     </div>
 
                     <div id="list-types">
+                        active: {{active}}
                         <div class="panel-group" ng-repeat="type in wordCtrl.listTypes | filter: search">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
+                                <div class="panel-heading" ng-click="wordCtrl.activeCat = wordCtrl.activeCat != type.name ? type.name : ''">
                                     <h4 class="panel-title">
                                         <a href="">
                                             {{ type.name }}
@@ -41,10 +42,12 @@
                                         </a>
                                     </h4>
                                 </div>
-                                <div class="panel-collapse collapse in">
+                                <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name}">
                                     <ul class="list-group">
 
-                                        <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
+                                        <li class="list-group-item"
+                                        ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse"
+                                        >
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     {{ word.Content }}
