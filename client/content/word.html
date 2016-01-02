@@ -13,13 +13,24 @@
             </div>
 
             <div class="container">
-                <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
-                    <option value="-Content">Classer par ordre alphabétique</option>
-                    <option value="-Stars">Classer par pertinence</option>
-                </select>
 
-                <div class="container">
+                <div class="">
                     <h2>Catégories de mots en relation</h2>
+
+
+                    <div class="input-group">
+                        <label for="">Tri des mots</label>
+                        <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
+                            <option value="-Content">Classer les mots par ordre alphabétique</option>
+                            <option value="-Stars">Classer les mots par pertinence</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="">Rechercher une catégorie</label>
+                        <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="searchCtrl.word">
+                    </div>
+
                     <div id="list-types" ng-repeat="type in wordCtrl.listTypes">
                         <h3>
                             {{ type.name }}

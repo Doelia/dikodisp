@@ -1,7 +1,7 @@
 <div class="container home">
     <div class="jumbotron">
         <h1>DIKO</h1>
-        <p>Dictionnaire basé sur les relation entre les mots</p>
+        <p>Annuaire de mots basé sur les relations</p>
         <p>
             Construit dynamiquement à partir du jeu <a href="http://www.jeuxdemots.org">www.jeuxdemots.org</a>
         </p>
@@ -9,7 +9,8 @@
 </div>
 
 <div class="container home">
-    <h3>Recherchez un mot</h3>
+    <!-- <div class="jumbotron"> -->
+    <h3>Rechercher un mot</h3>
     <form class="" ng-controller="SearchController as searchCtrl">
         <div class="input-group">
             <input type="text" placeholder="Mot" class="form-control" ng-model="searchCtrl.word">
@@ -18,4 +19,15 @@
             </span>
         </div>
     </form>
+    <p>
+        <br>
+        Exemples de mots :
+        <a href="" ng-click="loadWord('chat')">Chat</a>,
+        <a href="" ng-click="loadWord('voiture')">Voiture</a>,
+        <a href="" ng-click="loadWord('tomber')">Tomber</a>,
+        <a href="" ng-click="loadWord('amour')">Amour</a>,
+        <a href="" ng-click="loadWord('mdr')">Mdr</a>,
+        <a href="" ng-click="loadWord('facebook')">Facebook</a>...
+    </p>
+    <!-- </div> -->
 </div>
