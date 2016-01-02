@@ -41,9 +41,8 @@
                                 <div class="panel-heading" ng-click="wordCtrl.activeCat = wordCtrl.activeCat != type.name ? type.name : ''">
                                     <h4 class="panel-title">
                                         <i class="fa" ng-class="wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats ? 'fa-caret-square-o-down' : 'fa-caret-square-o-up'"></i>
-                                        {{ type.name }}
-                                        ({{ wordCtrl.getWordsFromType(type.label).length }} mots)
-
+                                        {{ type.name }} - 
+                                        <span class="label label-info">{{ wordCtrl.getWordsFromType(type.label).length }} mots</span>
                                     </h4>
                                 </div>
                                 <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats }">
