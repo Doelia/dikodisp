@@ -22,11 +22,12 @@
                         <div class="input-group">
                             <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="search.name">
                             <span class="input-group-addon">
-                                <input type="checkbox" ng-model="wordCtrl.activeAllCats"> Ouvrir toutes les catégories
+                                <input type="checkbox" ng-model="wordCtrl.activeAllCats" id="chooseCat">
+                                <label for="chooseCat" class="notWeight">Ouvrir toutes les catégories</label>
                             </span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="">Dans une catégorie, trier les mots...</label>
                         <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">

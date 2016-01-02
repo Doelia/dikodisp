@@ -34,3 +34,8 @@
 .home h3 {
     margin-top: 80px;
 }
+
+label.notWeight {
+    font-weight: 400;
+    margin-bottom: 0;
+}
