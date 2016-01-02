@@ -37,7 +37,7 @@
                     </div>
 
                     <div id="list-types">
-                        <div class="panel-group" ng-repeat="type in wordCtrl.listTypes | filter: search">
+                        <div class="panel-group" ng-repeat="type in wordCtrl.listTypes | filter: search | orderBy: wordCtrl.getWordsFromType(type.label).length">
                             <div class="panel panel-default">
                                 <div class="panel-heading" ng-click="wordCtrl.activeCat = wordCtrl.activeCat != type.name ? type.name : ''">
                                     <h4 class="panel-title">
