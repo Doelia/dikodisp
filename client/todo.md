@@ -1,3 +1,3 @@
 - Aligner les mots
-- Faire bien le menu du haut en responsive
 - Faire le chargement de tous les mots
+- Activer les tooltips

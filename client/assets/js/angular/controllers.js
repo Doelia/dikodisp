@@ -29,8 +29,7 @@ app.controller('SearchController', function($scope, $routeParams, $rootScope) {
     $scope.$on('$routeChangeSuccess', function() {
         that.word = $routeParams.word;
     });
-
-
+    
 });
 
 app.controller('WordController', function($http, $scope, WordLoader, $routeParams) {
