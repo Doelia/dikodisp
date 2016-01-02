@@ -54,7 +54,6 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
-        console.log("buildTypes...");
         var rel = that.word.ListRel;
         var list = [];
         for (var i in rel) {
@@ -75,7 +74,6 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     };
 
     var buildStars = function() {
-        console.log("buildStars...");
         var types = that.listTypes;
         for (var i in types) {
             var aliasType = types[i];
@@ -137,18 +135,14 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
         that.hashMapWords = {};
         that.isLoad = false;
         that.notFound = false;
-        console.log("wget du mot "+name);
         WordLoader.GetWord(name, function(wordJson) {
             if (wordJson !== null) {
-                console.log("Mot reçu.");
                 that.word = wordJson;
                 buildTypes();
                 buildStars();
-                $('.ttip').tooltip(); // TODO async
                 that.isLoad = true;
                 that.notFound = false;
             } else {
-                console.log("Mot introuvable");
                 that.isLoad = true;
                 that.notFound = true;
             }
