@@ -29,7 +29,7 @@ app.controller('SearchController', function($scope, $routeParams, $rootScope) {
     $scope.$on('$routeChangeSuccess', function() {
         that.word = $routeParams.word;
     });
-    
+
 });
 
 app.controller('WordController', function($http, $scope, WordLoader, $routeParams) {
@@ -41,6 +41,7 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
     that.listTypes = []; // Liste des types des relations, unique (label, name)
     that.activeCat = "";
     that.activeAllCats = false;
+    that.limite = 10;
 
     $scope.predicate = '-Content';
     $scope.reverse = true;
@@ -126,6 +127,10 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
         that.hashMapWords[typeNeedle] = list;
 
         return list;
+    };
+
+    that.nbWordsForType = function(typeNeedle) {
+        return that.getWordsFromType(typeNeedle).length;
     };
 
     that.loadWord = function() {

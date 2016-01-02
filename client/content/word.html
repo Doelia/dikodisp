@@ -47,9 +47,9 @@
                                     </h4>
                                 </div>
                                 <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats }">
-                                    <ul class="list-group">
+                                    <ul class="list-group" ng-init="testLimit = 20; count = wordCtrl.nbWordsForType(type.label)">
 
-                                        <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
+                                        <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | orderBy:predicate:reverse | limitTo:testLimit" >
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     {{ word.Content }}
@@ -61,6 +61,11 @@
                                                     <a href="" ng-click="loadWord(word.Content)" class="btn btn-primary btn-xs"><i class="fa fa-link"></i></a>
                                                 </div>
                                             </div>
+                                        </li>
+                                        <li class="list-group-item" ng-show="count > testLimit">
+                                            <a href="" ng-click="testLimit = testLimit + 20">Charger les 20 suivants ({{ count - testLimit }} restants)</a> |
+                                            <a href="" ng-click="testLimit = count">Tout charger</a>
+
                                         </li>
                                     </ul>
                                 </div>
