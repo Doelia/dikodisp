@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div ng-show="wordCtrl.notFound">
             <div class="jumbotron">
                 <div class="container">
@@ -55,6 +55,17 @@
                         Le mot que vous recherchez n'existe pas dans la base de donnée.
                     </p>
                 </div>
+            </div>
+            <div class="container">
+                <h3>Recherchez un autre mot</h3>
+                <form class="" ng-controller="SearchController as searchCtrl">
+                    <div class="input-group">
+                        <input type="text" placeholder="Mot" class="form-control" ng-model="searchCtrl.word">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success" ng-click="loadWord(searchCtrl.word)"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
 
