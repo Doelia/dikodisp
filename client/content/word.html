@@ -27,7 +27,12 @@
 
                     <div class="form-group">
                         <label for="">Rechercher une catégorie</label>
-                        <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="search.name">
+                        <div class="input-group">
+                            <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="search.name">
+                            <span class="input-group-addon">
+                                <input type="checkbox" ng-model="wordCtrl.activeAllCats"> Ouvrir toutes les catégories
+                            </span>
+                        </div>
                     </div>
 
                     <div id="list-types">
