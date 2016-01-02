@@ -11,7 +11,7 @@
     <title>Diko</title>
 </head>
 
-<body>
+<body ng-controller="PageController">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -19,7 +19,7 @@
                 <a class="navbar-brand" href="" ng-click="goPage('/')">Diko</a>
                 <ul class="nav navbar-nav">
                     <li ng-class="{active: currentPage == '/'}"><a href="" ng-click="goPage('/')">
-                        Accueil <span class="sr-only">(current)</span></a>
+                        Accueil</a>
                     </li>
                 </ul>
             </div>
