@@ -28,7 +28,6 @@ func handlerWord(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("[webserver] Mot traité.")
 	if err == nil {
 		word := ParseXML(content)
-		fmt.Println(word)
 		b, _ := json.Marshal(word)
 		w.Write(b)
 		fmt.Println("[webserver] Mot envoyé.")

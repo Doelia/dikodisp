@@ -110,7 +110,6 @@ func buildRel(line string) (error, Rel) {
 func ParseXML(content string) (w Word) {
 	lines := strings.Split(content, "\n")
 	for _, line := range lines {
-		//fmt.Println("-" + line)
 		balise := GetBaliseName(line)
 		if balise == "def" {
 			w.Def = GetContentOfBalise(line)
@@ -123,7 +122,6 @@ func ParseXML(content string) (w Word) {
 			if err == nil {
 				w.ListRel = append(w.ListRel, r)
 			}
-			//fmt.Println(r)
 		}
 	}
 	return w
