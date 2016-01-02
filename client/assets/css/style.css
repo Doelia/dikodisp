@@ -41,3 +41,7 @@ label.notWeight {
     font-weight: 400;
     margin-bottom: 0;
 }
+
+.label-warning {
+    margin-right: 10px;
+}

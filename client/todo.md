@@ -1,2 +1,1 @@
-- Aligner les mots
 - Activer les tooltips
