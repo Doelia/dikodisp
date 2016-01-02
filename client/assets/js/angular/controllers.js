@@ -7,6 +7,10 @@ app.controller('PageController', function($scope, $location, $window, $routePara
         $window.scrollTo(0,0);
     };
 
+    $rootScope.loadWord = function(word) {
+        $rootScope.goPage('word/'+word);
+    };
+
     $scope.$on('$routeChangeSuccess', function(next, current) {
         console.log('routeChangeSuccess');
         initJquery();
@@ -23,17 +27,15 @@ app.controller('SearchController', function($scope, $routeParams, $rootScope) {
         that.word = $routeParams.word;
     });
 
-    $scope.loadWord = function() {
-        console.log($scope.foo);
-        $rootScope.goPage('word/'+that.word);
-    };
+
 });
 
 app.controller('WordController', function($http, $scope, WordLoader, $routeParams) {
     var that = this;
 
     that.word = {}; // Structure Mot, voir structure Go
-    that.isLoad = false;
+    that.isLoad = false; // Contenu chargé ?
+    that.notFound = false;
     that.listTypes = []; // Liste des types des relations, unique (label, name)
 
     $scope.predicate = '-Content';
@@ -124,7 +126,8 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
 
     that.loadWord = function() {
         that.hashMapWords = {};
-        that.false = true;
+        that.isLoad = false;
+        that.notFound = false;
         console.log("wget du mot "+name);
         WordLoader.GetWord(name, function(wordJson) {
             if (wordJson !== null) {
@@ -134,8 +137,11 @@ app.controller('WordController', function($http, $scope, WordLoader, $routeParam
                 buildStars();
                 $('.ttip').tooltip(); // TODO async
                 that.isLoad = true;
+                that.notFound = false;
             } else {
                 console.log("Mot introuvable");
+                that.isLoad = true;
+                that.notFound = true;
             }
 
         });

@@ -14,6 +14,9 @@ app.service('WordLoader', function($q, $http, $timeout) {
                         console.log("Service WordLoader:: Mot introuvable");
                         callback(null);
                     }
+                }, function() {
+                    console.log("Service WordLoader:: Erreur HTTP");
+                    callback(null);
                 });
         };
 
