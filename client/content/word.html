@@ -23,72 +23,79 @@
                         </select>
                     </div>
 
-                    <h2>Catégories de mots en relation</h2>
-
-
-
+                    <h3>Catégories de mots en relation avec {{ wordCtrl.word.Name }}</h3>
 
                     <div class="form-group">
                         <label for="">Rechercher une catégorie</label>
                         <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="search.name">
                     </div>
 
-                    <div id="list-types" ng-repeat="type in wordCtrl.listTypes | filter: search">
-                        <h3>
-                            {{ type.name }}
-                            ({{ wordCtrl.getWordsFromType(type.label).length }} mots)
-                        </h3>
-
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        {{ word.Content }}
-                                    </div>
-                                    <div class="col-md-4 text-right">
-                                        <div class="label label-warning ttip" title="Poids de {{ word.Poids }}">
-                                            <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
-                                        </div>
-                                        <a href="" ng-click="loadWord(word.Content)" class="btn btn-primary btn-xs"><i class="fa fa-link"></i></a>
-                                    </div>
+                    <div id="list-types">
+                        <div class="panel-group" ng-repeat="type in wordCtrl.listTypes | filter: search">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a href="">
+                                            {{ type.name }}
+                                            ({{ wordCtrl.getWordsFromType(type.label).length }} mots)
+                                        </a>
+                                    </h4>
                                 </div>
-                            </li>
-                        </ul>
+                                <div class="panel-collapse collapse in">
+                                    <ul class="list-group">
 
+                                        <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | limitTo:10 | orderBy:predicate:reverse">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    {{ word.Content }}
+                                                </div>
+                                                <div class="col-md-4 text-right">
+                                                    <div class="label label-warning ttip" title="Poids de {{ word.Poids }}">
+                                                        <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
+                                                    </div>
+                                                    <a href="" ng-click="loadWord(word.Content)" class="btn btn-primary btn-xs"><i class="fa fa-link"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </div>
 
-        <div ng-show="wordCtrl.notFound">
-            <div class="jumbotron">
+            <div ng-show="wordCtrl.notFound">
+                <div class="jumbotron">
+                    <div class="container">
+                        <h1>Mot <span>introuvable</span></h1>
+                        <p>
+                            Le mot que vous recherchez n'existe pas dans la base de donnée.
+                        </p>
+                    </div>
+                </div>
                 <div class="container">
-                    <h1>Mot <span>introuvable</span></h1>
-                    <p>
-                        Le mot que vous recherchez n'existe pas dans la base de donnée.
-                    </p>
+                    <h3>Recherchez un autre mot</h3>
+                    <form class="" ng-controller="SearchController as searchCtrl">
+                        <div class="input-group">
+                            <input type="text" placeholder="Mot" class="form-control" ng-model="searchCtrl.word">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success" ng-click="loadWord(searchCtrl.word)"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="container">
-                <h3>Recherchez un autre mot</h3>
-                <form class="" ng-controller="SearchController as searchCtrl">
-                    <div class="input-group">
-                        <input type="text" placeholder="Mot" class="form-control" ng-model="searchCtrl.word">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-success" ng-click="loadWord(searchCtrl.word)"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-            </div>
+
         </div>
 
-    </div>
-
-    <div ng-hide="wordCtrl.isLoad" class="container">
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        <div ng-hide="wordCtrl.isLoad" class="container">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                </div>
             </div>
+            Chargement en cours...
         </div>
-        Chargement en cours...
     </div>
-</div>
