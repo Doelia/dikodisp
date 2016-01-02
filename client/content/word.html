@@ -14,26 +14,7 @@
 
             <div class="container">
 
-                <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-<div class="row">
-  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-</div>
-
-<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-<div class="row">
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-</div>
-
-<!-- Columns are always 50% wide, on mobile and desktop -->
-<div class="row">
-  <div class="col-xs-6">.col-xs-6</div>
-  <div class="col-xs-6">.col-xs-6</div>
-</div>
-
-                <div class="">
+                <div>
                     <h3>Catégories de mots en relation avec {{ wordCtrl.word.Name }}</h3>
 
                     <div class="form-group">
@@ -90,10 +71,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 
     <div ng-show="wordCtrl.notFound">
@@ -106,7 +85,7 @@
             </div>
         </div>
         <div class="container">
-            <h3>Recherchez un autre mot</h3>
+            <h3>Rechercher un autre mot</h3>
             <form class="" ng-controller="SearchController as searchCtrl">
                 <div class="input-group">
                     <input type="text" placeholder="Mot" class="form-control" ng-model="searchCtrl.word">
