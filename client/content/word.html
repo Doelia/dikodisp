@@ -15,14 +15,6 @@
             <div class="container">
 
                 <div class="">
-                    <div class="form-group">
-                        <label for="">Dans une catégorie, trier les mots...</label>
-                        <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
-                            <option value="-Content">par ordre alphabétique</option>
-                            <option value="-Stars">Par pertinence</option>
-                        </select>
-                    </div>
-
                     <h3>Catégories de mots en relation avec {{ wordCtrl.word.Name }}</h3>
 
                     <div class="form-group">
@@ -33,6 +25,14 @@
                                 <input type="checkbox" ng-model="wordCtrl.activeAllCats"> Ouvrir toutes les catégories
                             </span>
                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Dans une catégorie, trier les mots...</label>
+                        <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
+                            <option value="-Content">par ordre alphabétique</option>
+                            <option value="-Stars">Par pertinence</option>
+                        </select>
                     </div>
 
                     <div id="list-types">
