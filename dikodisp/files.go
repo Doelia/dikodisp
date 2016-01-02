@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -18,6 +19,11 @@ func GetWordFromFile(word string) (string, error) {
 		return "", err
 	}
 	s := string(buf)
+
+	if strings.Contains(s, "n'existe pas !") {
+		return "", errors.New("Introuvable")
+	}
+
 	return s, nil
 }
 
@@ -48,6 +54,10 @@ func GetWordFromURL(word string) (string, error) {
 
 	out, _ = iconv.ConvertString(out, "windows-1252", "utf-8")
 
+	if strings.Contains(out, "n'existe pas !") {
+		return "", errors.New("Introuvable")
+	}
+
 	fmt.Println(out)
 	out = getXMLFromHTMLSource(out)
 
@@ -76,5 +86,7 @@ func GetWord(word string) (string, error) {
 		return fromWeb, nil
 	}
 
-	return "", nil
+	// Mot introuvable
+	putInFile(word, "n'existe pas !")
+	return "", errWeb
 }

@@ -23,17 +23,17 @@ func StartWebServer(port int) {
 func handlerWord(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	wordNeedle := req.URL.Query().Get("word")
-	fmt.Println("Demande du mot " + wordNeedle + "...")
+	fmt.Println("[webserver] Demande du mot " + wordNeedle + "...")
 	content, err := GetWord(wordNeedle)
-	fmt.Println("Mot traité.")
+	fmt.Println("[webserver] Mot traité.")
 	if err == nil {
 		word := ParseXML(content)
 		fmt.Println(word)
 		b, _ := json.Marshal(word)
 		w.Write(b)
-		fmt.Println("Mot envoyé.")
+		fmt.Println("[webserver] Mot envoyé.")
 	} else {
-		fmt.Println("Mot introuvable")
+		fmt.Println("[webserver] Mot introuvable")
 		w.Write([]byte("404"))
 	}
 

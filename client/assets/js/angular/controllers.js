@@ -1,42 +1,35 @@
+app.controller('PageController', function($scope, $location, $window, $routeParams, $rootScope) {
+    console.log('Init PageController');
 
-var app = angular.module('diko', []);
-
-app.service('WordLoader', function($q, $http, $timeout) {
-
-    var deferred = $q.defer();
-
-    var that = function() {
-
-        this.GetWord = function(name, callback) {
-            return $http.get("/getWord?word="+name)
-                .then(function(response) {
-                    if (response.data != "404") {
-                        var wordJson = response.data;
-                        callback(wordJson);
-                    } else {
-                        console.log("not found");
-                        callback(null);
-                    }
-                });
-        };
-
-        deferred.resolve();
-
+    $rootScope.goPage = function(page) {
+        console.log("go page "+page);
+        $location.path(page);
+        $window.scrollTo(0,0);
     };
 
-    var o = new that();
-    o.promise = deferred.promise;
-    return o;
+    $scope.$on('$routeChangeSuccess', function(next, current) {
+        console.log('routeChangeSuccess');
+        initJquery();
+     });
 
 });
 
-app.controller('SearchController', function() {
+app.controller('SearchController', function($scope, $routeParams, $rootScope) {
     var that = this;
 
-    that.word = "chien"; // TODO
+    that.word = "Chargement...";
+
+    $scope.$on('$routeChangeSuccess', function() {
+        that.word = $routeParams.word;
+    });
+
+    $scope.loadWord = function() {
+        console.log($scope.foo);
+        $rootScope.goPage('word/'+that.word);
+    };
 });
 
-app.controller('WordController', function($http, $scope, WordLoader) {
+app.controller('WordController', function($http, $scope, WordLoader, $routeParams) {
     var that = this;
 
     that.word = {}; // Structure Mot, voir structure Go
@@ -46,12 +39,11 @@ app.controller('WordController', function($http, $scope, WordLoader) {
     $scope.predicate = '-Content';
     $scope.reverse = true;
 
-    $scope.order = function(data) {
-        $scope.predicate = predicate;
-        $scope.reverse = (predicate == '-Content');
+    $scope.order = function() {
+        $scope.reverse = ($scope.predicate == '-Content');
     };
 
-    var name = "amour"; // TODO
+    var name = $routeParams.word; // TODO
 
     // Contruit la liste unique des types depuis la liste des mot associés au mot chargé
     var buildTypes = function() {
@@ -135,12 +127,17 @@ app.controller('WordController', function($http, $scope, WordLoader) {
         that.false = true;
         console.log("wget du mot "+name);
         WordLoader.GetWord(name, function(wordJson) {
-            console.log("Mot reçu.");
-            that.word = wordJson;
-            buildTypes();
-            buildStars();
-            $('.ttip').tooltip(); // TODO async
-            that.isLoad = true;
+            if (wordJson !== null) {
+                console.log("Mot reçu.");
+                that.word = wordJson;
+                buildTypes();
+                buildStars();
+                $('.ttip').tooltip(); // TODO async
+                that.isLoad = true;
+            } else {
+                console.log("Mot introuvable");
+            }
+
         });
     };
 
