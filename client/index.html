@@ -18,9 +18,7 @@
                 <a class="navbar-brand" href="" ng-click="goPage('/')">Diko</a>
                 <ul class="nav navbar-nav">
                     <li ng-class="{active: currentPage == '/'}">
-                        <a href="" ng-click="goPage('/')">
-                            Accueil
-                        </a>
+                        <a href="" ng-click="goPage('/')">Accueil</a>
                     </li>
                 </ul>
             </div>
@@ -35,9 +33,7 @@
         </div>
     </nav>
 
-    <div class="main">
-        <ng-view></ng-view>
-    </div>
+    <div class="main" ng-view></div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -50,5 +46,4 @@
     <script type="text/javascript" src="assets/js/angular/services.js"></script>
 
 </body>
-
 </html>

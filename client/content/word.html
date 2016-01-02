@@ -6,67 +6,63 @@
             <div class="jumbotron">
                 <div class="container">
                     <h1>Mot <span>{{ wordCtrl.word.Name }}</span></h1>
-                    <p>
-                        {{ wordCtrl.word.Def }}
-                    </p>
+                    <p>{{ wordCtrl.word.Def }}</p>
                 </div>
             </div>
 
             <div class="container">
 
-                <div>
-                    <h3>Catégories de mots en relation avec {{ wordCtrl.word.Name }}</h3>
+                <h3>Catégories de mots en relation avec {{ wordCtrl.word.Name }}</h3>
 
-                    <div class="form-group">
-                        <label for="">Rechercher une catégorie</label>
-                        <div class="input-group">
-                            <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="search.name">
-                            <span class="input-group-addon">
-                                <input type="checkbox" ng-model="wordCtrl.activeAllCats" id="chooseCat">
-                                <label for="chooseCat" class="notWeight">Ouvrir toutes les catégories</label>
-                            </span>
-                        </div>
+                <div class="form-group">
+                    <label for="">Rechercher une catégorie</label>
+                    <div class="input-group">
+                        <input type="text" placeholder="Filtre sur les catégories" class="form-control" ng-model="search.name">
+                        <span class="input-group-addon">
+                            <input type="checkbox" ng-model="wordCtrl.activeAllCats" id="chooseCat">
+                            <label for="chooseCat" class="notWeight">Ouvrir toutes les catégories</label>
+                        </span>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="">Dans une catégorie, trier les mots...</label>
-                        <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
-                            <option value="-Content">par ordre alphabétique</option>
-                            <option value="-Stars">Par pertinence</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="">Dans une catégorie, trier les mots...</label>
+                    <select name="" id="" class="form-control" ng-change="order()" ng-model="predicate">
+                        <option value="-Content">par ordre alphabétique</option>
+                        <option value="-Stars">Par pertinence</option>
+                    </select>
+                </div>
 
-                    <div id="list-types">
-                        <div class="panel-group" ng-repeat="type in wordCtrl.listTypes | filter: search | orderBy: wordCtrl.getWordsFromType(type.label).length">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" ng-click="wordCtrl.activeCat = wordCtrl.activeCat != type.name ? type.name : ''">
-                                    <h4 class="panel-title">
-                                        <i class="fa" ng-class="wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats ? 'fa-caret-square-o-down' : 'fa-caret-square-o-up'"></i>
-                                        {{ type.name }} -
-                                        <span class="label label-info">{{ wordCtrl.getWordsFromType(type.label).length }} mots</span>
-                                    </h4>
-                                </div>
-                                <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats }">
-                                    <ul class="list-group" ng-init="testLimit = 20; count = wordCtrl.nbWordsForType(type.label)">
-                                        <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | orderBy:predicate:reverse | limitTo:testLimit" >
-                                            <div class="row">
-                                                <div class="col-xs-7">
-                                                    {{ word.Content }}
-                                                </div>
-                                                <div class="col-xs-5 text-right">
-                                                    <div class="label label-warning ttip" ttip="{title: 'Poids de ' + word.Poids}">
-                                                        <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
-                                                    </div>
-                                                    <a href="" ng-click="loadWord(word.Content)" ttip="{title: 'Aller au mot ' + word.Content}" class="btn btn-primary btn-xs ttip"><i class="fa fa-chevron-circle-right"></i></a>
-                                                </div>
+                <div id="list-types">
+                    <div class="panel-group" ng-repeat="type in wordCtrl.listTypes | filter: search | orderBy: wordCtrl.getWordsFromType(type.label).length">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" ng-click="wordCtrl.activeCat = wordCtrl.activeCat != type.name ? type.name : ''">
+                                <h4 class="panel-title">
+                                    <i class="fa" ng-class="wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats ? 'fa-caret-square-o-down' : 'fa-caret-square-o-up'"></i>
+                                    {{ type.name }} -
+                                    <span class="label label-info">{{ wordCtrl.getWordsFromType(type.label).length }} mots</span>
+                                </h4>
+                            </div>
+                            <div class="panel" ng-class="{collapse: wordCtrl.activeCat != type.name && !wordCtrl.activeAllCats }">
+                                <ul class="list-group" ng-init="testLimit = 20; count = wordCtrl.nbWordsForType(type.label)">
+                                    <li class="list-group-item" ng-repeat="word in wordCtrl.getWordsFromType(type.label) | orderBy:predicate:reverse | limitTo:testLimit" >
+                                        <div class="row">
+                                            <div class="col-xs-7">
+                                                {{ word.Content }}
                                             </div>
-                                        </li>
-                                        <li class="list-group-item" ng-show="count > testLimit">
-                                            <a href="" ng-click="testLimit = testLimit + 20">Charger les 20 suivants ({{ count - testLimit }} restants)</a> |
-                                            <a href="" ng-click="testLimit = count">Tout charger</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            <div class="col-xs-5 text-right">
+                                                <div class="label label-warning ttip" ttip="{title: 'Poids de ' + word.Poids}">
+                                                    <i class="fa fa-star" ng-repeat="i in range(wordCtrl.fullsStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-half-o" ng-repeat="i in range(wordCtrl.halfStarsNumber(word.Stars)) track by $index"></i><i class="fa fa-star-o" ng-repeat="i in range(wordCtrl.emptyStarsNumber(word.Stars)) track by $index"></i>
+                                                </div>
+                                                <a href="" ng-click="loadWord(word.Content)" ttip="{title: 'Aller au mot ' + word.Content}" class="btn btn-primary btn-xs ttip"><i class="fa fa-chevron-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item" ng-show="count > testLimit">
+                                        <a href="" ng-click="testLimit = testLimit + 20">Charger les 20 suivants ({{ count - testLimit }} restants)</a> |
+                                        <a href="" ng-click="testLimit = count">Tout charger</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
