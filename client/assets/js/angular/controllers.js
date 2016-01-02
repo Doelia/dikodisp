@@ -1,8 +1,11 @@
 app.controller('PageController', function($scope, $location, $window, $routeParams, $rootScope) {
     console.log('Init PageController');
 
+    $rootScope.currentPage = "/";
+
     $rootScope.goPage = function(page) {
         console.log("go page "+page);
+        $rootScope.currentPage = page;
         $location.path(page);
         $window.scrollTo(0,0);
     };

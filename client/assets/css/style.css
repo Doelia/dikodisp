@@ -10,3 +10,9 @@
     max-width: 800px;
     margin-top: 20px;
 }
+
+.home.bot {
+    margin-top: 0px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
